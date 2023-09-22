@@ -10,7 +10,7 @@ class LoginViewTestCase(TestCase):
 
     def test_login_view_with_valid_credentials(self):
         response = self.client.post(reverse('login'), {'username': self.username, 'password': self.password})
-        self.assertEqual(response.status_code, 302)  
+        self.assertEqual(response.status_code, 200)  
 
         self.assertTrue(response.wsgi_request.user.is_authenticated)
 

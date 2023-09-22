@@ -26,9 +26,8 @@ def login_view(request):
 
             if user is not None:
                 login(request, user)
-                return redirect('/') #Should this redirect be handled in frontend?
+                return HttpResponse("Login successful", status=200)
         else:
             return HttpResponse("Login failed", status=401)
 
 
-  
