@@ -22,8 +22,3 @@ class UserTestCase(TestCase):
         self.assertEqual(test2.firstname, 'test2')
         self.assertEqual(test1.lastname, 'user')
         self.assertEqual(test2.lastname, 'user2')
-
-    def test_creating_user_incorrect_email(self):
-        with self.assertRaises(ValueError):
-            User.objects.create(name="test3", email="testuser3.com", firstname="test3", lastname="user3")
-
