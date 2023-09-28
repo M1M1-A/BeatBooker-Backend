@@ -1,5 +1,4 @@
 from django.test import TestCase
-<<<<<<< HEAD
 from .models import User
 
 class UserTestCase(TestCase):
@@ -23,7 +22,7 @@ class UserTestCase(TestCase):
         self.assertEqual(test2.firstname, 'test2')
         self.assertEqual(test1.lastname, 'user')
         self.assertEqual(test2.lastname, 'user2')
-=======
+
 from django.contrib.auth.models import User
 from django.urls import reverse
 
@@ -47,4 +46,4 @@ class LoginViewTestCase(TestCase):
 
     def tearDown(self):
         self.user.delete()
->>>>>>> 2c7d226d53a65c055496ee5d96cb1bd72453e725
+
