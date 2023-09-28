@@ -1,16 +1,14 @@
-from django.shortcuts import render
-
+from django.shortcuts import render, redirect
 from rest_framework import viewsets
 from .serializers import BeatbookerSerializer
 from .models import User
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm
-from django.shortcuts import redirect
 from django.http import HttpResponse
 
 
 class UserView(viewsets.ModelViewSet):
-    serializer_class = BeatbookerSerializer
+    serializer_class = BeatbookerSerializer 
     queryset = User.objects.all()
 
 
@@ -29,5 +27,3 @@ def login_view(request):
                 return HttpResponse("Login successful", status=200)
         else:
             return HttpResponse("Login failed", status=401)
-
-
