@@ -20,10 +20,11 @@ from rest_framework import routers
 from beatbooker import views
 
 router = routers.DefaultRouter()
-router.register(r'users', views.UserView, 'user')
+# router.register(r'users', views.UserView, 'user')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
-    path('login/', views.login_view, name='login')
+    path('login/', views.login_view, name='login'),
+    path('get-token/', views.get_csrf_token, name='get_csrf_token')
 ]
