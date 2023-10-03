@@ -25,6 +25,8 @@ router = routers.DefaultRouter()
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
+    path('signup/', views.signup_view, name='signup'),
     path('login/', views.login_view, name='login'),
     path('get-token/', views.get_csrf_token, name='get_csrf_token')
 ]
+
