@@ -1,11 +1,6 @@
-from django.shortcuts import render
-from django.views.decorators.csrf import requires_csrf_token
-from rest_framework import viewsets
-from .serializers import BeatbookerSerializer
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm
-from django.shortcuts import redirect
 from django.http import HttpResponse, JsonResponse
 from django.middleware.csrf import get_token
 from django.db import IntegrityError
