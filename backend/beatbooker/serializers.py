@@ -4,4 +4,4 @@ from .models import User
 class BeatbookerSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('id', 'name', 'email', 'firstname', 'lastname')
+        fields = ('username', 'email', 'firstname', 'lastname')
