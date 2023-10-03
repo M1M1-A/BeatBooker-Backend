@@ -1,27 +1,27 @@
 from django.test import TestCase
-from .models import User
+from django.contrib.auth.models import User
 
 class UserTestCase(TestCase):
     def setUp(self):
-        User.objects.create(name="test", email="testuser@.com", firstname="test", lastname="user")
-        User.objects.create(name="test2", email="testuser2@.com", firstname="test2", lastname="user2")
+        User.objects.create_user(username="test", email="testuser@.com", first_name="test", last_name="user")
+        User.objects.create_user(username="test2", email="testuser2@.com", first_name="test2", last_name="user2")
 
     def test_Users_have_names(self):
         """Users that have names should return True"""
-        test1 = User.objects.get(name="test")
-        test2 = User.objects.get(name="test2")
-        self.assertEqual(test1.name, 'test')
-        self.assertEqual(test2.name, 'test2')
+        test1 = User.objects.get(username="test")
+        test2 = User.objects.get(username="test2")
+        self.assertEqual(test1.username, 'test')
+        self.assertEqual(test2.username, 'test2')
 
     def test_Users_have_emails_firstnames_lastnames(self):
-        test1 = User.objects.get(name="test")
-        test2 = User.objects.get(name="test2")
+        test1 = User.objects.get(username="test")
+        test2 = User.objects.get(username="test2")
         self.assertEqual(test1.email, 'testuser@.com')
         self.assertEqual(test2.email, 'testuser2@.com')
-        self.assertEqual(test1.firstname, 'test')
-        self.assertEqual(test2.firstname, 'test2')
-        self.assertEqual(test1.lastname, 'user')
-        self.assertEqual(test2.lastname, 'user2')
+        self.assertEqual(test1.first_name, 'test')
+        self.assertEqual(test2.first_name, 'test2')
+        self.assertEqual(test1.last_name, 'user')
+        self.assertEqual(test2.last_name, 'user2')
 
 from django.contrib.auth.models import User
 from django.urls import reverse
