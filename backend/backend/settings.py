@@ -131,3 +131,5 @@ CORS_ORIGIN_WHITELIST = [
 ]
 
 LOGIN_URL= '/login'
+
+CSRF_TRUSTED_ORIGINS = ['http://localhost:8000/']
