@@ -14,7 +14,6 @@ import json
 def signup_view(request):
     json_string = request.body.decode('utf-8')
     data = json.loads(json_string)
-    print("DATA", data)
 
     if request.method == 'POST':
         username = data['username']
