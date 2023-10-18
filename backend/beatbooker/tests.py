@@ -1,5 +1,7 @@
 from django.test import TestCase
 from django.contrib.auth.models import User
+from django.urls import reverse
+import json
 
 class UserTestCase(TestCase):
     def setUp(self):
@@ -23,11 +25,10 @@ class UserTestCase(TestCase):
         self.assertEqual(test1.last_name, 'user')
         self.assertEqual(test2.last_name, 'user2')
 
-from django.contrib.auth.models import User
-from django.urls import reverse
 
 class LoginViewTestCase(TestCase):
     def setUp(self):
+        
         self.username = 'testuser'
         self.password = 'testpassword'
         self.user = User.objects.create_user(username=self.username, password=self.password)
@@ -47,3 +48,37 @@ class LoginViewTestCase(TestCase):
     def tearDown(self):
         self.user.delete()
 
+class UpdateProfileViewTestCase(TestCase):
+    def setUp(self):
+        self.username = 'testuser'
+        self.password = 'testpassword'
+        self.user = User.objects.create_user(username=self.username, password=self.password)
+    # def test_update_profile_view_with_valid_credentials(self):
+    #     response = self.client.post(reverse('profile'), {
+    #     "user": "username",
+    #     "is_authenticated": True,
+    #     "name": "testname",
+    #     "bio": "testbio",
+    #     "image": "testimage",
+    #     "genres": "testgenres",
+    #     "hourly_rate": "testhourly_rate",
+    #     "phone": "testphone"
+    #     })
+    #     response = self.client.post(reverse('profile'), data=json.dumps(data), content_type='application/json')
+    #     self.assertEqual(response.status_code, 201)  
+    
+    def test_update_profile_view_unauthenticated(self):
+        data = {
+            "user": "testuser",
+            "name": "Test User",
+            "bio": "This is a test bio",
+            "image": "test.jpg",
+            "genres": "Rock, Pop",
+            "hourly_rate": 50,
+            "phone": "123-456-7890"
+        }
+        response = self.client.post(reverse('profile'), data=json.dumps(data), content_type='application/json')
+        self.assertEqual(response.status_code, 401)
+        
+    def tearDown(self):
+        self.user.delete()

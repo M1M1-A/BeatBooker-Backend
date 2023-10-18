@@ -26,6 +26,7 @@ urlpatterns = [
     path('api/', include(router.urls)),
     path('signup/', views.signup_view, name='signup'),
     path('login/', views.login_view, name='login'),
-    path('get-token/', views.get_csrf_token, name='get_csrf_token')
+    path('get-token/', views.get_csrf_token, name='get_csrf_token'),
+    path('profile/', views.update_profile_view, name='profile')
 ]
 

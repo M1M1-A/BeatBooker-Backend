@@ -1,11 +1,16 @@
 from django.db import models
+from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 
-class User(models.Model):
-    username = models.CharField(max_length=120)
-    email = models.CharField(max_length=120)
-    firstname = models.CharField(max_length=120)
-    lastname = models.CharField(max_length=120)
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
+    name = models.CharField(max_length=255)
+    bio = models.TextField()
+    image = models.ImageField()
+    genres = models.JSONField()
+    hourly_rate = models.DecimalField(max_digits= 8, decimal_places=2)
+    phone = models.CharField(max_length=255)
 
-    def _str_(self):
-        return self.username
+    def __str__(self):
+        return str(self.user)
+    

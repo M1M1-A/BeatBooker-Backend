@@ -5,6 +5,7 @@ from django.http import HttpResponse, JsonResponse
 from django.middleware.csrf import get_token
 from django.db import IntegrityError
 import json
+from .models import UserProfile
 
 def signup_view(request):
     json_string = request.body.decode('utf-8')
@@ -50,4 +51,26 @@ def login_view(request):
 def get_csrf_token(request):
     csrf_token = get_token(request)
     return JsonResponse({'csrf_token': csrf_token})
+
+def update_profile_view(request):
+    json_string = request.body.decode('utf-8')
+    data = json.loads(json_string)
+
+    if request.method == 'POST':
+        user = request.user
+        if user.is_authenticated:
+            profile = UserProfile.objects.get_or_create(user=user)[0]
+            profile.user = data['user']
+            profile.name = data['name']
+            profile.bio = data['bio']
+            profile.image = data['image']
+            profile.genres = data['genres']
+            profile.hourly_rate = data['hourly_rate']
+            profile.phone = data['phone']
+            profile.save()
+            return HttpResponse("Profile Created successful", status=201)
+        else:
+            return HttpResponse("User not authenticated", status=401)
+
+
 
